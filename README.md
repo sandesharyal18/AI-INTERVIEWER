@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI_Interviewer</title>
-     <link rel="icon" href="robo.png" type="image/png">
-    <meta name="description" content="Sandesh Aryal" />
-    <meta name="author" content="Sandesh Aryal" />
-
-    <meta property="og:title" content="AI_Interviewer" />
-    <meta property="og:description" content="Sandesh Aryal's Project" />
- 
-
-  
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+# AI-INTERVIEWER
+AI Interviewer is a smart web application that helps users practice for job interviews. Users can log in and get interview questions based on their job role. The AI conducts the session in a simulated video call format and provides feedback with a performance score to help users improve their interview skills.
+ <br>
+ Author - Sandesh Aryal
+ <br />
+ Author - Binod Bista.
