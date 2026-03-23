@@ -1,107 +1,118 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { MessageSquare, User, Mic ,AlertCircle} from "lucide-react";
+import { MessageSquare, User, Mic, } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useGoogleLogin } from "@react-oauth/google";
-import {googleAuth} from '../api'
+import { googleAuth } from "../api";
+
 const Index = () => {
-  // ✅ Define googleLogin hook inside your component
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
       try {
-        if(codeResponse['code']){
-          const result=await googleAuth(codeResponse['code']);
-          if (!result.data || !result.data.user) {
-  console.error("No user data received:", result.data);
-  return;
-          }
-          const {email,name,image}=result.data.user;
-          console.log('result.data.user---',result.data.user);
+        if (codeResponse["code"]) {
+          const result = await googleAuth(codeResponse["code"]);
+          if (!result.data || !result.data.user) return;
+          console.log("User data:", result.data.user);
         }
-        // You can send codeResponse.code to your backend here
       } catch (error) {
-  console.error(
-    "Error while handling Google code:",
-    error?.response?.data || error?.message || JSON.stringify(error) || "Unknown error"
-  );
-}
-
+        console.error("Google login error:", error);
+      }
     },
-    onError: (error) => {
-      console.error("Google login failed:", error);
-    },
+    onError: (error) => console.error("Google login failed:", error),
   });
 
   return (
     <>
-  
-
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center items-center">
-          <div className="text-center">
-            <div className="flex flex-col justify-center items-center lg:py-5">
-              <img src="./login.png" width={600} height={400} alt="Login" />
-            </div>
+      {/* Hero Section */}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 drop-shadow-lg mb-6">
+            AI-Powered Interview Preparation Platform
+         </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+            Practice real interview questions, improve your skills, and receive instant feedback to perform your best in any interview.
+          </p>
 
-            <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-0 my-10">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:py-7 px-6">
-                <Link to="/register">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Start Free Interview
-                  </Button>
-                </Link>
-                <Link to="/login">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    Sign In
-                  </Button>
-                </Link>
+          <div className="flex justify-center mb-12">
+            <img
+              src="./login.png"
+              alt="Login"
+              className="w-full max-w-xl rounded-xl shadow-2xl transform hover:scale-105 transition duration-500"
+            />
+          </div>
 
-                {/* ✅ Google Login Button */}
-                <Button
-                  onClick={() => googleLogin()}
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <img
-                    src="./google.png"
-                    alt="Google logo"
-                    className="w-5 h-5"
-                  />
-                  Login with Google
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/register">
+              <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform shadow-lg">
+                Get Started
+              </Button>
+            </Link>
 
-        {/* Features Section */}
-        <div className="mt-20 grid md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-200 hover:scale-105 hover:shadow-xl hover:border-blue-600 border border-transparent">
-            <MessageSquare className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">AI-Generated Questions</h3>
-            <p className="text-gray-600">
-              Get personalized interview questions based on your job description using advanced AI
-            </p>
+            <Link to="/login">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform shadow">
+                Sign In
+              </Button>
+            </Link>
+
+            <Button
+              onClick={() => googleLogin()}
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 hover:scale-105 transition-transform shadow"
+            >
+              <img src="./google.png" alt="Google logo" className="w-5 h-5" />
+              Login with Google
+            </Button>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-200 hover:scale-105 hover:shadow-xl hover:border-blue-600 border border-transparent">
-            <Mic className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Voice Integration</h3>
-            <p className="text-gray-600">
-              Practice with voice-to-voice interaction for a realistic interview experience
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-200 hover:scale-105 hover:shadow-xl hover:border-blue-600 border border-transparent">
-            <User className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Detailed Feedback</h3>
-            <p className="text-gray-600">
-              Receive comprehensive feedback on your responses and areas for improvement
+
+          {/* Why Choose Section */}
+          <div className="mt-20 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Our system simulates real interview scenarios, helping users gain confidence and improve performance through structured practice and feedback.
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 grid md:grid-cols-3 gap-8">
+        {[
+          {
+            icon: <MessageSquare className="h-14 w-14 text-white" />,
+            title: "AI-Generated Questions",
+            desc: "Get personalized interview questions based on your job description using advanced AI",
+            bg: "bg-blue-500",
+          },
+          {
+            icon: <Mic className="h-14 w-14 text-white" />,
+            title: "Voice Integration",
+            desc: "Practice with voice-to-voice interaction for a realistic interview experience",
+            bg: "bg-indigo-500",
+          },
+          
+          {
+            icon: <User className="h-14 w-14 text-white" />,
+            title: "Detailed Feedback",
+            desc: "Receive comprehensive feedback on your responses and areas for improvement",
+            bg: "bg-teal-500",
+          },
+        ].map((feature, idx) => (
+          <div
+            key={idx}
+            className="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition-transform border border-transparent hover:border-blue-400"
+          >
+            <div className={`mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full ${feature.bg}`}>
+              {feature.icon}
+            </div>
+            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+            <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+          </div>
+        ))}
       </div>
     </>
   );
