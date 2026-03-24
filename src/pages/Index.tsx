@@ -4,7 +4,8 @@ import { User, Settings, PlayCircle, MessageSquare, GitBranch, BarChart, Mic } f
 import Navbar from "@/components/Navbar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../api";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const Index = () => {
   const googleLogin = useGoogleLogin({
@@ -21,7 +22,14 @@ const Index = () => {
       }
     },
     onError: (error) => console.error("Google login failed:", error),
+
+  
   });
+
+const [statsRef, inView] = useInView({
+  triggerOnce: true, // animate only once
+  threshold: 0.3,    // 30% of section visible triggers the animation
+});
 
   return (
     <>
@@ -135,22 +143,29 @@ const Index = () => {
           </div>
         ))}
       </div>
+
+
+      
       {/* Stats Section */}
-<div className="bg-white py-16">
+<div className="bg-white py-16" ref={statsRef}>
   <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
     {[
-    { number: 100, suffix: "+", label: "Students Practiced" },
+  { number: 100, suffix: "+", label: "Students Practiced" },
   { number: 50, suffix: "+", label: "Interview Questions" },
   { number: 90, suffix: "%", label: "Success Rate" },
   { number: 24, suffix: "/7", label: "AI Support" },
-    ].map((item, index) => (
-      <div key={index}>
-        <h3 className="text-3xl font-bold text-blue-600">
-  <CountUp end={item.number} duration={4} />{item.suffix}
-</h3>
-        <p className="text-gray-600 mt-2">{item.label}</p>
-      </div>
-    ))}
+].map((item, index) => (
+  <div
+    key={index}
+    className={`transition-all duration-700 transform ${
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+  >
+    <h3 className="text-3xl font-bold text-blue-600">
+      {inView ? <CountUp end={item.number} duration={2} /> : 0}{item.suffix}
+    </h3>
+    <p className="text-gray-600 mt-2">{item.label}</p>
+  </div>
+))}
   </div>
 </div>
 {/* How It Works */}
@@ -163,6 +178,8 @@ const Index = () => {
         A simple, guided process to simulate real interview scenarios and improve your responses
       </p>
     </div>
+
+    
 
     <div className="relative">
       
