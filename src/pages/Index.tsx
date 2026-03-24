@@ -4,6 +4,7 @@ import { User, Settings, PlayCircle, MessageSquare, GitBranch, BarChart, Mic } f
 import Navbar from "@/components/Navbar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../api";
+import CountUp from 'react-countup';
 
 const Index = () => {
   const googleLogin = useGoogleLogin({
@@ -138,13 +139,15 @@ const Index = () => {
 <div className="bg-white py-16">
   <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
     {[
-      { number: "100+", label: "Students Practiced" },
-      { number: "50+", label: "Interview Questions" },
-      { number: "90%", label: "Success Rate" },
-      { number: "24/7", label: "AI Support" },
+    { number: 100, suffix: "+", label: "Students Practiced" },
+  { number: 50, suffix: "+", label: "Interview Questions" },
+  { number: 90, suffix: "%", label: "Success Rate" },
+  { number: 24, suffix: "/7", label: "AI Support" },
     ].map((item, index) => (
       <div key={index}>
-        <h3 className="text-3xl font-bold text-blue-600">{item.number}</h3>
+        <h3 className="text-3xl font-bold text-blue-600">
+  <CountUp end={item.number} duration={4} />{item.suffix}
+</h3>
         <p className="text-gray-600 mt-2">{item.label}</p>
       </div>
     ))}
