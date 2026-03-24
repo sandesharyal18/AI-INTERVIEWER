@@ -98,7 +98,7 @@ const [statsRef, inView] = useInView({
 </div>
 
           {/* Why Choose Section */}
-          <div className="mt-20 text-center">
+          <div className="mt-10 mb-10 text-center ">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Our system simulates real interview scenarios, helping users gain confidence and improve performance through structured practice and feedback.
