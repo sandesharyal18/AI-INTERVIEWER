@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { MessageSquare, User, Mic, } from "lucide-react";
+import { User, Settings, PlayCircle, MessageSquare, GitBranch, BarChart, Mic } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../api";
@@ -114,6 +114,110 @@ const Index = () => {
           </div>
         ))}
       </div>
+      {/* Stats Section */}
+<div className="bg-white py-16">
+  <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    {[
+      { number: "100+", label: "Students Practiced" },
+      { number: "50+", label: "Interview Questions" },
+      { number: "90%", label: "Success Rate" },
+      { number: "24/7", label: "AI Support" },
+    ].map((item, index) => (
+      <div key={index}>
+        <h3 className="text-3xl font-bold text-blue-600">{item.number}</h3>
+        <p className="text-gray-600 mt-2">{item.label}</p>
+      </div>
+    ))}
+  </div>
+</div>
+{/* How It Works */}
+<div className="py-24 bg-gradient-to-b from-gray-50 to-white">
+  <div className="max-w-6xl mx-auto px-4">
+    
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4">How It Works</h2>
+      <p className="text-gray-600 max-w-2xl mx-auto">
+        A simple, guided process to simulate real interview scenarios and improve your responses
+      </p>
+    </div>
+
+    <div className="relative">
+      
+      {/* vertical line */}
+      <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-gray-200 transform -translate-x-1/2"></div>
+
+      <div className="space-y-12">
+        {[
+          {
+            step: "1",
+            title: "Sign Up / Login",
+            desc: "Access the platform and manage your interview sessions.",
+            icon: <User size={22} />,
+          },
+          {
+            step: "2",
+            title: "Select Interview Type",
+            desc: "Choose the interview category based on your preparation needs.",
+            icon: <Settings size={22} />,
+          },
+          {
+            step: "3",
+            title: "Start Session",
+            desc: "Begin your mock interview with AI-generated questions.",
+            icon: <PlayCircle size={22} />,
+          },
+          {
+            step: "4",
+            title: "Answer Questions",
+            desc: "Respond in a natural, conversational format.",
+            icon: <MessageSquare size={22} />,
+          },
+          {
+            step: "5",
+            title: "Adaptive Questions",
+            desc: "Questions evolve based on your responses.",
+            icon: <GitBranch size={22} />,
+          },
+          {
+            step: "6",
+            title: "Get Feedback",
+            desc: "Receive insights to refine your answers.",
+            icon: <BarChart size={22} />,
+          },
+        ].map((item, index) => (
+          <div
+            key={index}
+            className={`flex flex-col md:flex-row items-center ${
+              index % 2 === 0 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+            
+            {/* content */}
+            <div className="md:w-1/2 p-6">
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
+                <div className="flex items-center gap-3 mb-3 text-blue-600 font-semibold">
+                  {item.icon}
+                  Step {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </div>
+            </div>
+
+            {/* circle */}
+            <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white font-bold shadow-md z-10">
+              {item.step}
+            </div>
+
+            {/* empty side */}
+            <div className="md:w-1/2"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
     </>
   );
 };
