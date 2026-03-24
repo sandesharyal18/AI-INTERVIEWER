@@ -29,12 +29,13 @@ const Index = () => {
       {/* Hero Section */}
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 drop-shadow-lg mb-6">
-            AI-Powered Interview Preparation Platform
-         </h1>
+          <h1 className="text-5xl md:text-5xl font-extrabold text-transparent bg-clip-text 
+               bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 drop-shadow-lg mb-6">
+  Practice Real Interviews & Improve with AI Feedback
+</h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            Practice real interview questions, improve your skills, and receive instant feedback to perform your best in any interview.
-          </p>
+  Get personalized AI coaching, simulate real interviews, and boost your confidence in minutes.
+</p>
 
           <div className="flex justify-center mb-12">
             <img
@@ -44,30 +45,48 @@ const Index = () => {
             />
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register">
-              <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform shadow-lg">
-                Get Started
-              </Button>
-            </Link>
+{/* CTA Buttons */}
+<div className="flex flex-col sm:flex-row gap-4 justify-center">
 
-            <Link to="/login">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform shadow">
-                Sign In
-              </Button>
-            </Link>
+  {/* Get Started Button */}
+  <Link to="/register">
+    <Button
+      size="lg"
+      className="w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-lg
+                 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:bg-blue-700
+                 transition-transform transition-colors duration-300"
+    >
+      Get Started
+    </Button>
+  </Link>
 
-            <Button
-              onClick={() => googleLogin()}
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 hover:scale-105 transition-transform shadow"
-            >
-              <img src="./google.png" alt="Google logo" className="w-5 h-5" />
-              Login with Google
-            </Button>
-          </div>
+  {/* Sign In Button */}
+  <Link to="/login">
+    <Button
+      variant="outline"
+      size="lg"
+      className="w-full sm:w-auto border-blue-600 text-blue-600 font-semibold rounded-lg
+                 hover:bg-blue-600 hover:text-white hover:scale-105 hover:-translate-y-1 hover:shadow-md
+                 transition-transform transition-colors duration-300"
+    >
+      Sign In
+    </Button>
+  </Link>
+
+  {/* Google Login Button */}
+  <Button
+    onClick={() => googleLogin()}
+    variant="outline"
+    size="lg"
+    className="w-full sm:w-auto flex items-center justify-center gap-2 border-gray-400 text-gray-700 font-semibold rounded-lg
+               hover:bg-gray-100 hover:scale-105 hover:-translate-y-1 hover:shadow-md
+               transition-transform transition-colors duration-300"
+  >
+    <img src="./google.png" alt="Google logo" className="w-5 h-5" />
+    Login with Google
+  </Button>
+
+</div>
 
           {/* Why Choose Section */}
           <div className="mt-20 text-center">
@@ -87,6 +106,7 @@ const Index = () => {
             title: "AI-Generated Questions",
             desc: "Get personalized interview questions based on your job description using advanced AI",
             bg: "bg-blue-500",
+            
           },
           {
             icon: <Mic className="h-14 w-14 text-white" />,
@@ -104,7 +124,7 @@ const Index = () => {
         ].map((feature, idx) => (
           <div
             key={idx}
-            className="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition-transform border border-transparent hover:border-blue-400"
+            className="bg-white p-6 rounded-xl shadow-xl text-center transform hover:rotate-2 hover:scale-105 transition-transform duration-300 border border-transparent hover:border-blue-400"
           >
             <div className={`mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full ${feature.bg}`}>
               {feature.icon}
