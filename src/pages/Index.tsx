@@ -303,7 +303,7 @@ const [statsRef, inView] = useInView({
         <div className="flex items-center gap-4">
           <img
             src="/Bibek.png"
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-12 h-16 rounded-full object-cover"
             alt="Student 2"
           />
           <div className="text-left">
@@ -322,7 +322,7 @@ const [statsRef, inView] = useInView({
         <div className="flex items-center gap-4">
           <img
             src="/Pawan.jpg"
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-12 h-16 rounded-full object-cover"
             alt="Student 3"
           />
           <div className="text-left">
