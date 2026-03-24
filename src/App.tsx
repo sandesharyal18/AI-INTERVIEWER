@@ -28,7 +28,8 @@ const GoogleAuthWrapper = () => (
 const AppRoutes = () => {
   const { user } = useAuth();
 
-  return (
+ return (
+  <>
     <Routes>
       <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <GoogleAuthWrapper />} />
       <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
@@ -44,6 +45,11 @@ const AppRoutes = () => {
       
       <Route path="*" element={<NotFound />} />
     </Routes>
+
+<div className="text-center py-6 text-gray-500 text-sm">
+      © 2026 AI Interviewer Project
+    </div>
+    </>
   );
 };
 

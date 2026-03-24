@@ -111,6 +111,11 @@ const Login: React.FC = () => {
                 {loading ? "Signing in..." : "Sign in"}
               </Button>
             </form>
+
+<div className="text-center py-6 text-gray-500 text-sm">
+  © 2026 AI Interviewer Project
+</div>
+
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
