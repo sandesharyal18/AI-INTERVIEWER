@@ -28,7 +28,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("https://voice-agent-tbys.onrender.com/api/user/register", {
+      const response = await fetch("http://localhost:8000/api/user/register", {
         method: "POST",
         headers: { "content-type": "application/json" },
         credentials: "include",

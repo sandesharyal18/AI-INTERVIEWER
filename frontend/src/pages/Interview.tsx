@@ -75,7 +75,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(
-        `https://voice-agent-tbys.onrender.com/api/interview/answer/${sessionId}`,
+        `http://localhost:8000/api/interview/answer/${sessionId}`,
         {
           method: "PUT",
           headers: {
@@ -106,7 +106,7 @@ useEffect(() => {
       }
       try {
         const response = await fetch(
-          `https://voice-agent-tbys.onrender.com/api/interview/get/${sessionId}`,
+          `http://localhost:8000/api/interview/get/${sessionId}`,
           { headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`

@@ -60,7 +60,7 @@ const Feedback: React.FC = () => {
 
         // Updated URL to your production endpoint
         const res = await fetch(
-          `https://voice-agent-tbys.onrender.com/api/interview/result/${sessionId}`,
+          `http://localhost:8000/api/interview/result/${sessionId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
