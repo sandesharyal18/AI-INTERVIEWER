@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 const app=express()
 
 app.use(cors({
-  origin: "https://ai-interviewer-s7pq.onrender.com", // use your frontend's actual origin
+  origin: "http://localhost:8080",
   credentials: true
 }));app.use(express.json({limit:"20kb"}))
 app.use(express.urlencoded({extended:true,limit:"20kb"}))
